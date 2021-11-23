@@ -9,7 +9,7 @@ import (
 	"regexp"
 )
 
-var templates = template.Must(template.ParseFiles("edit.html", "view.html"))
+var templates = template.Must(template.ParseFiles("tmpl/edit.html", "tmpl/view.html"))
 var validPath = regexp.MustCompile("^/(edit|save|view)/([a-zA-Z0-9]+)$")
 
 type Page struct {
@@ -18,13 +18,13 @@ type Page struct {
 }
 
 func (p *Page) save() error {
-	filename := p.Title + ".txt"
-	return os.WriteFile(filename, p.Body, 0600)
+	filePath := getFilePath(p.Title)
+	return os.WriteFile(filePath, p.Body, 0600)
 }
 
 func loadPage(title string) (*Page, error) {
-	filename := title + ".txt"
-	body, err := os.ReadFile(filename)
+	filePath := getFilePath(title)
+	body, err := os.ReadFile(filePath)
 	if err != nil {
 		return nil, err
 	}
@@ -84,6 +84,10 @@ func getTitle(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "", errors.New("invalid Page Title")
 	}
 	return m[2], nil // The title is the second subexpression.
+}
+
+func getFilePath(title string) string {
+	return "data/" + title + ".txt"
 }
 
 func main() {
