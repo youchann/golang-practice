@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	todolist "github.com/youchann/golang-practice/todo_list/internal/app/todo_list"
+)
 
 func main() {
-	fmt.Println("hoge")
+	todolist.Start()
 }
