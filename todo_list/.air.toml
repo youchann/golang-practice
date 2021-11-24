@@ -1,10 +1,10 @@
-root = "./cmd/todo_list"
+root = "."
 testdata_dir = "testdata"
 tmp_dir = "tmp"
 
 [build]
   bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
+  cmd = "go build -o ./tmp/main ./cmd/todo_list/main.go"
   delay = 1000
   exclude_dir = ["assets", "tmp", "vendor", "testdata"]
   exclude_file = []
