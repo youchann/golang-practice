@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/youchann/golang-practice/todo_list/internal/app/todo_list/schemas"
+	"github.com/youchann/golang-practice/todo_list/internal/app/todo_list/schemas/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -12,6 +12,6 @@ func main() {
 		panic("failed to connect database")
 	}
 	// Migrate the schema
-	db.AutoMigrate(&schemas.Todo{})
-	db.Create(&schemas.Todo{Name: "hoge", IsDone: false})
+	db.AutoMigrate(&models.Todo{})
+	db.Create(&models.Todo{Name: "hoge", IsDone: false})
 }
