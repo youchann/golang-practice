@@ -21,7 +21,7 @@ func NewTodoController() *TodoController {
 func (tc *TodoController) Index(c echo.Context) error {
 	todos, err := tc.todoRepository.GetAll()
 	if err != nil {
-		panic("failed to connect database")
+		panic("failed to get todos")
 	}
 	return c.JSON(http.StatusOK, todos)
 }
