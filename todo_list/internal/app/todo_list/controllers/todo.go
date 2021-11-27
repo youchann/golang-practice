@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -24,6 +23,5 @@ func (tc *TodoController) Index(c echo.Context) error {
 	if err != nil {
 		panic("failed to connect database")
 	}
-	fmt.Println(todos)
-	return c.JSON(http.StatusOK, "hoge")
+	return c.JSON(http.StatusOK, todos)
 }
